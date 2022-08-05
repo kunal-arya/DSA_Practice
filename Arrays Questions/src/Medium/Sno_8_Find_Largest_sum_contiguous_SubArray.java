@@ -1,4 +1,4 @@
-package medium;
+package Medium;
 
 public class Sno_8_Find_Largest_sum_contiguous_SubArray {
     public static int bruteForce(int[] arr, int n ){

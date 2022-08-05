@@ -1,4 +1,4 @@
-package medium;
+package Medium;
 
 public class Sno_10_Minimum_number_of_jumps {
 
