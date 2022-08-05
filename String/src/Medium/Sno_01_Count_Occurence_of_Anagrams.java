@@ -61,6 +61,11 @@ public class Sno_01_Count_Occurence_of_Anagrams {
             // decrease its count by one. Also, check if value of current Char becomes zero or not , if it becomes
             // zero , decrease count by one
 
+            // b/c we use hashmap to take the count of every number occurence in the ptr and if we find that number in
+            // str , we decrease its value and if values of all the numbers in hashmap become zero , that means we got our
+            // anagram. To refrain from checking everytime if all the numbers in hashmap become zero or not , we are using
+            // count variable , if it becomes zero that means values of all the numbers in hashmap becomes zero.
+
             char curr_char = str.charAt(j);
             if(hm.containsKey(curr_char)){
                 hm.put(curr_char , hm.get(curr_char) - 1);
@@ -72,14 +77,16 @@ public class Sno_01_Count_Occurence_of_Anagrams {
             if((j - i + 1) < k){
                 j++;
             } else if((j - i + 1) == k){
-                // if count becomes zero , that means all keys in hashmaps are zero, that means we get our anagram
+                // if count becomes zero , that means all values of keys in hashmaps are zero, that means we get our anagram
                 if(count == 0){
                     ans++;
                 }
 
                 // check if character at str.charAt(i) is in hm or not , if yes , increase value of key in hashmap
-                // before increasing count of i and check if value of str.charAt(i) becomes 1 or not , if yes increase
-                // the count by 1
+                // before increasing count of i b/c to change the current window by increasing both i & j
+                // we have to restore any changes made in (a) step
+                // and check if value of str.charAt(i) becomes 1 or not , if yes increase the count by 1 b/c that means
+                // it was zero before we added 1 in the above step.
                 if(hm.containsKey(str.charAt(i))){
                     hm.put(str.charAt(i), hm.get(str.charAt(i)) + 1);
                     if(hm.get(str.charAt(i)) == 1){
