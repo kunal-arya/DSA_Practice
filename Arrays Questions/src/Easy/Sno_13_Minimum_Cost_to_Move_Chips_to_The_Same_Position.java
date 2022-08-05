@@ -2,7 +2,7 @@ package Easy;
 
 // question URL : https://leetcode.com/problems/minimum-cost-to-move-chips-to-the-same-position/
 
-public class Minimum_Cost_to_Move_Chips_to_The_Same_Position_13 {
+public class Sno_13_Minimum_Cost_to_Move_Chips_to_The_Same_Position {
 
     public static int minCostToMoveChips(int[] position) {
         int evenPlace = 0;

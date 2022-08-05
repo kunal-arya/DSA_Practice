@@ -4,7 +4,7 @@ package Easy;
 
 import java.util.Arrays;
 
-public class Find_N_Unique_Integers_Sum_up_to_Zero_12 {
+public class Sno_12_Find_N_Unique_Integers_Sum_up_to_Zero {
     public static int[] arraySumZero(int n) {
         int[] result = new int[n];
         int number = n/2;

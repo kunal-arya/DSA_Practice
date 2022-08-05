@@ -2,7 +2,7 @@ package Easy;
 
 import java.util.ArrayList;
 
-public class Maximum_sum_subarray_of_size_k {
+public class Sno_17_Maximum_sum_subarray_of_size_k {
     public static int bruteForce(int[] arr, int k){
         int n = arr.length;
         int max = Integer.MIN_VALUE;
