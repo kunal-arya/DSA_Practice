@@ -1,4 +1,4 @@
-package Easy;
+package Medium;
 
 import org.w3c.dom.ls.LSException;
 
@@ -21,9 +21,7 @@ public class Sno_18_First_negative_integer_in_every_window_of_size_k {
                     break;
                 }
             }
-
         }
-
         return result;
     }
 
