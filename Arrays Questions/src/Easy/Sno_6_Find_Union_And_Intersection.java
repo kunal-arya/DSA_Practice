@@ -11,7 +11,6 @@ public class Sno_6_Find_Union_And_Intersection {
         int i = 0 , j = 0;
 
         List<Integer> result = new ArrayList<>();
-        int count = 0;
 
         while(i < n || j < m){
 
@@ -27,14 +26,12 @@ public class Sno_6_Find_Union_And_Intersection {
             // if one array is exhausted
             if(i >= n){
                 result.add(b[j]);
-                count++;
                 j++;
                 continue;
             }
 
             if(j >= m){
                 result.add(a[i]);
-                count++;
                 i++;
                 continue;
             }
@@ -42,21 +39,18 @@ public class Sno_6_Find_Union_And_Intersection {
             // comparison logic
             if(a[i] < b[j]){
                 result.add(a[i]);
-                count++;
                 i++;
             } else if(a[i] > b[j]){
                 result.add(b[j]);
-                count++;
                 j++;
             } else {
                 result.add(a[i]);
-                count++;
                 i++;
                 j++;
             }
         }
         System.out.println(result);
-        return count;
+        return result.size();
     }
     public static int doUnion(int[] a, int n, int[] b, int m){
         Set<Integer> result = new HashSet<Integer>();
@@ -76,7 +70,6 @@ public class Sno_6_Find_Union_And_Intersection {
         int i = 0 , j = 0;
         // just to print the intersected Array
         List<Integer> result = new ArrayList<>();
-        int count = 0;
 
         while (i < n && j < m){
             // skipping duplicates
@@ -98,14 +91,13 @@ public class Sno_6_Find_Union_And_Intersection {
             } else if(a[i] > b[j]){
                 j++;
             } else {
-                count++;
                 result.add(a[i]);
                 i++;
                 j++;
             }
         }
         System.out.println(result);
-        return count;
+        return result.size();
     }
 
     public static int doIntersection(int[] a, int[] b){
