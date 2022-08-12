@@ -44,7 +44,7 @@ public class Sno_30_Minimize_the_absolute_difference {
         while (i < al && j < bl && k < cl) {
             int max = Math.max(Math.max(a[i],b[j]),c[k]);
             int min = Math.min(Math.min(a[i],b[j]),c[k]);
-            int curr_min = Math.abs(max) - Math.abs(min);
+            int curr_min = Math.abs(max - min);
 
             if(curr_min < ans) {
                 ans = curr_min;
