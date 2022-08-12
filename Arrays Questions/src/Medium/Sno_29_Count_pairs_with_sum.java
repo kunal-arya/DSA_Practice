@@ -62,9 +62,12 @@ public class Sno_29_Count_pairs_with_sum {
         int j = n - 1;
 
         Arrays.sort(arr);
+        // we are using two pointer -
+        // one at the start of array
+        // and other one at the end.
 
         while(j > i) {
-            // if arr[i] + arr[j] is < than k, that means you have to increase the sum.. we all know that array is sorted
+            // if arr[i] + arr[j] is < than k, that means you have to increase the sum. we all know that array is sorted
             // so increase the i pointer towards right, means i++
             if(arr[i] + arr[j] < k){
                 i++;
@@ -82,7 +85,7 @@ public class Sno_29_Count_pairs_with_sum {
                 // arr = [1,2,2,2,4,4,6]
                 // desired_sum or k = 6
                 // so, if you start a pointer from left and pointer from right
-                // we will reach where i = 1 & j = 5 and arr[i] + arr[j] == k ==> 1 + 5 = 6
+                // we will reach where i = 1 & j = 5 and arr[i] + arr[j] == k ==> 2 + 4 = 6
                 // now, forget about coding , lets do simple math
                 // Total number 2 in arr are => 3
                 // Total number 4 in arr are => 2
@@ -102,7 +105,7 @@ public class Sno_29_Count_pairs_with_sum {
                     i++;
                 }
 
-                // for finding the total number of arr[j] i.e. 4 in arr, store the current i position and run a while loop
+                // for finding the total number of arr[j] i.e. 4 in arr, store the current j position and run a while loop
                 // till 4 == arr[j] and j >=i , do j-- to move to next
                 int first_j = j, j_value = arr[j];
                 while((j_value == arr[j]) && (j >= i)) {
@@ -127,8 +130,9 @@ public class Sno_29_Count_pairs_with_sum {
                     // to solve this issue, do two things
                     // 1) subtract ( curr_i - first_i ) = tc => this will give you total number of Occurrence - 1 ( dry run this )
                     // 2) add = (result * (result + 1))/2
-                    // reason: to find out the ans , result => (tc * (tc + 1)), here tc is total occurrence of number
+                    // reason: to find out the ans , tc = curr_i - first_i , here tc is total occurrence of number - 1
                     // b/c we have to delete the pair where it is making the pair with itself and
+                    // result = (tc * (tc + 1)) , where result have all the pairs expect with number itself but
                     // this will give us double pairs like [3(1),3(2)] and [3(2),3(1)]
                     // So, to remove this => just divide the result / 2 and add this to the final answer ans.
                     int temp = i - first_i;
