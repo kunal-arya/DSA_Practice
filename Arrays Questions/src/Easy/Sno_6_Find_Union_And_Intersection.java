@@ -77,7 +77,7 @@ public class Sno_6_Find_Union_And_Intersection {
                 i++;
             }
 
-            if(j > 0 && j < n && b[j] == b[j - 1]){
+            if(j > 0 && j < m && b[j] == b[j - 1]){
                 j++;
             }
             // One Array Exhaust
