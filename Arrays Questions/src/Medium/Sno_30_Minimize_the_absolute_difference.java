@@ -15,7 +15,7 @@ public class Sno_30_Minimize_the_absolute_difference {
                     int a1 = a[i];
                     int b1 = b[j];
                     int c1 = c[k];
-                    int curr_min = Math.abs(Math.max(Math.max(a1,b1),c1)) - Math.abs(Math.min(Math.min(a1,b1),c1));
+                    int curr_min = Math.abs(Math.max(Math.max(a1,b1),c1) - Math.min(Math.min(a1,b1),c1));
                     if(curr_min < min) min = curr_min;
                 }
             }
