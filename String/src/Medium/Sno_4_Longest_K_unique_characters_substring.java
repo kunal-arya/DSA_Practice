@@ -16,7 +16,7 @@ public class Sno_4_Longest_K_unique_characters_substring {
                 int count[] = new int[26];
 
                 // count[s.charAt(i) - 'a'] gives us place of that number and we just increasing it by 1;
-                // for ex- count['c' - 'a'] = count[2] => c is the 3rd element in the aplhabet.
+                // for ex- count['c' - 'a'] = count[2] => c is the 3rd element in the alphabet.
                 // index of array when c values are => 3 - 1 = 2;
                 for(int l = i; l < j; l++) {
                     count[s.charAt(l) - 'a']++;
