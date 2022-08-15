@@ -21,7 +21,6 @@ public class Sno_21_Subarray_with_sum_Equals_k {
 
                 if(sum == k){
                     count++;
-                    continue;
                 }
             }
         }
