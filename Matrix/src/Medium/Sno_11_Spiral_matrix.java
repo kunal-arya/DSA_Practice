@@ -3,7 +3,7 @@ package Medium;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Spiral_matrix_11 {
+public class Sno_11_Spiral_matrix {
     public static List<Integer> spiralMatrix(int[][] matrix){
         int sR = 0;
         int eR = matrix.length - 1;
