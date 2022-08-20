@@ -1,4 +1,4 @@
-package Medium;
+package hard;
 
 public class Sno_07_Find_a_specific_pair_in_matrix {
     public static void main(String[] args) {
