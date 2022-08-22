@@ -56,17 +56,23 @@ public class Sno_20_Longest_Subarray_with_sum_k {
         HashMap<Integer,Integer> hm = new HashMap<>();
         int ans = 0;
         int sum = 0;
+        // b/c sum = 0 at index = -1
         hm.put(0,0);
 
         for (int i = 0 ; i < n ; i++){
             sum += arr[i];
 
             int remSum = sum - k;
+            // if hashmap contains (sum - K) , we have to find the window size of the subarray and compare it with ans
+            // whichever is maximum store that.
             if(hm.containsKey(remSum)){
                 int position = hm.get(remSum);
-                ans = Math.max(ans, i - position + 1);
+                // ( i + 1 ) b/c we are adding one while storing index in hashmap
+                int window_size = (i + 1) - position;
+                ans = Math.max(ans, window_size);
             }
 
+            // we are only including index in sum
             if (!hm.containsKey(sum)) {
                 hm.put(sum,i + 1);
             }
