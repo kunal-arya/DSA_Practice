@@ -30,6 +30,12 @@ public class Sno_01_Search_Insert_Position {
     }
 
     static int binarySearch(int[] arr, int target) {
+
+        // if target is greater than even the greatest no. of array, return -1
+        if(target > arr[arr.length - 1]) {
+            return -1;
+        }
+
         int start = 0;
         int end = arr.length - 1;
 
