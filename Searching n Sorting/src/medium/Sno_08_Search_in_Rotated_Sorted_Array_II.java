@@ -3,7 +3,7 @@ package medium;
 public class Sno_08_Search_in_Rotated_Sorted_Array_II {
     public static void main(String[] args) {
         int[] arr = {1,3};
-        int target = 0;
+        int target = 1;
 
         // brute force => O(n)
         // linear search
@@ -38,7 +38,6 @@ public class Sno_08_Search_in_Rotated_Sorted_Array_II {
         // if pivot not found
         if(pivotIndex == -1 ){
             int ans = binarySearch(arr,n,target,0,n - 1);
-            System.out.println(ans);
             return ans != -1;
         }
 
@@ -50,15 +49,11 @@ public class Sno_08_Search_in_Rotated_Sorted_Array_II {
 
         if(target >= arr[0]) {
             int result = binarySearch(arr,n,target,0,pivotIndex - 1);
-            System.out.println(result);
             return result != -1;
         }
 
         int ans = binarySearch(arr,n,target,pivotIndex + 1, n - 1);
-        System.out.println(ans);
         return ans != -1;
-
-
     }
 
     static int findPivotIndexWithDuplicates(int[] arr, int n) {
@@ -78,27 +73,39 @@ public class Sno_08_Search_in_Rotated_Sorted_Array_II {
                 return mid - 1;
             }
 
-            // case 3
-            // if all the values are equal => start, end and middle
-            if(arr[start] == arr[mid] && arr[mid] == arr[end]) {
+            // if elements at middle, start, end are equal then just skip the duplicates
+            if (arr[mid] == arr[start] && arr[mid] == arr[end]) {
+                // skip the duplicates
+                // NOTE: what if these elements at start and end were the pivot??
                 // check if start is pivot
-                if(start < end && arr[start] > arr[start + 1]) {
+                if (start < end && arr[start] > arr[start + 1]) {
                     return start;
                 }
                 start++;
 
-                // check if end is pivot
-                if(end > start && arr[end] < arr[end - 1]) {
+                // check whether end is pivot
+                if (end > start && arr[end] < arr[end - 1]) {
                     return end - 1;
                 }
                 end--;
             }
-            // pivot is in right
-              else if(arr[start] < arr[mid] || arr[start] == arr[mid] && arr[mid] > arr[end]) {
+            // so, If start, end and mid are not equal,
+            // now , we look if
+            // 1) arr[mid] > arr[start]
+            // 2) or as we have duplicate elements
+            // we could encounter something like this -
+            // arr[start] == arr[mid] =>
+            // In this case we have to look for one more thing
+            // that is if arr[mid] > arr[end] or not.
+            //
+            // If one of them is true , we know that pivot is in Right
+            // for example - {2,2,2,2,3,4,0,1}
+            // arr[mid] == arr[start] => 2 == 2
+            // and arr[mid] > arr[end] => 2 > 1
+            // so pivot should in right of mid. Hence, start = mid + 1
+            else if(arr[start] < arr[mid] || (arr[start] == arr[mid] && arr[mid] > arr[end])) {
                 start = mid + 1;
-            }
-            // pivot is in left
-              else {
+            } else {
                 end = mid - 1;
             }
         }
