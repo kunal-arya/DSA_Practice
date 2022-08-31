@@ -12,10 +12,12 @@ public class Sno_58_Median_of_2_sorted_array_of_diff_size {
         System.out.println(brute);
 
         //optimised Solution => T.C. - O(n1 + n2) and  S.C. - O(1)
-        int result = opSol(arr1,arr2,n2,n1);
+        int result = opSol(arr1,arr2,n1,n2);
         System.out.println(result);
 
-        // further optimised solution => when we have done binary search
+        // further optimised solution => T.C. - O( log( min(n1,n2) ) )
+        double ans = binarySearch(arr1,arr2,n1,n2);
+        System.out.println(ans);
     }
 
     private static int bruteForce(int[] arr1, int[] arr2, int n1, int n2) {
@@ -115,5 +117,37 @@ public class Sno_58_Median_of_2_sorted_array_of_diff_size {
         } else {
             return ( firstN + secondN ) / 2 ;
         }
+    }
+
+    static double binarySearch(int[] arr1, int[] arr2, int n1, int n2) {
+        // we are swapping the arrays in such a way that arr1 will always be the smaller one b.c we are going
+        // to put binary search on arr1. It will also bring down our complexity to O(log(min(n1,n2)))
+        if(n1 > n2) {
+            return binarySearch(arr2,arr1,n2,n1);
+        }
+
+        int lo = 0;
+        int hi = n1;
+
+        while(lo <= hi) {
+            int cut1 = lo + (hi - lo)/2;
+            int cut2 = (n1 + n2)/2 - cut1;
+
+            int l1 = cut1 == 0 ? Integer.MIN_VALUE : arr1[cut1 - 1];
+            int l2 = cut2 == 0 ? Integer.MIN_VALUE : arr2[cut2 - 1];
+            int h1 = cut1 == n1 ? Integer.MIN_VALUE : arr1[cut1];
+            int h2 = cut2 == n2 ? Integer.MAX_VALUE : arr2[cut2];
+
+            if(l1 > h2) {
+                hi = cut1 - 1;
+            } else if(l2 > h1) {
+                lo = cut1 + 1;
+            } else {
+                double maxl = Math.max(l1,l2);
+                double minh = Math.min(h1,h2);
+                return (n1 + n2) % 2 == 0 ? (maxl + minh)/2 : Math.min(h1,h2);
+            }
+        }
+        return 0.0;
     }
 }
