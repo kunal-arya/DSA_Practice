@@ -48,12 +48,14 @@ public class Sno_20_Find_All_Numbers_Disappeared_in_an_Array {
         List<Integer> ans = new ArrayList<>();
 
         // traversing through array & whenever you find the element the missing element , store it in ans
-        int missing = 1;
+        int correctNum = 1;
+        int missing = -1;
         for (int i = 0; i < arr.length; i++) {
-            if(arr[i] != missing) {
+            if(arr[i] != correctNum) {
+                missing = correctNum;
                 ans.add(missing);
             }
-            missing++;
+            correctNum++;
         }
 
         return ans;

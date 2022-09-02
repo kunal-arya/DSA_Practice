@@ -49,11 +49,11 @@ public class Sno_34_find_duplicate_in_an_array_of_Nplus1_Integers {
         // Sort the Array
         cyclicSort(arr);
 
-        int missing = 1;
+        int correctNum = 1;
         int duplicate = -1;
         for (int i = 0; i < arr.length; i++) {
-            if(arr[i] == missing) {
-                missing++;
+            if(arr[i] == correctNum) {
+                correctNum++;
             } else {
               duplicate = arr[i];
               break;

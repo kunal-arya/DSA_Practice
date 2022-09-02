@@ -10,8 +10,8 @@ public class Sno_19_Missing_Number {
         int[] arr2 = {3,0,1,2};
 
         // brute Force => T.C. - O( NlogN ) S.C. - O(1)
-        int brute = bruteForce(arr2);
-        System.out.println(brute);
+//        int brute = bruteForce(arr2);
+//        System.out.println(brute);
 
         // Optimised Approach => T.C. - O(n)  S.C. - O(1)
         // since array's element is from 0 to N , we will use Cyclic Sort
@@ -44,17 +44,22 @@ public class Sno_19_Missing_Number {
     static int findMissing(int[] arr) {
         // first sort the array using cyclic sort
         cyclicSort(arr);
-
+        int n = arr.length;
         // start a for loop to check the missing Number
-        int missing = 0;
+        int correctNum = 0;
+        int missing = -1;
         for (int num: arr) {
-            if(num == missing) {
-                missing++;
+            if(num == correctNum) {
+                correctNum++;
             } else {
+                missing = correctNum;
                 break;
             }
         }
 
+        if(missing == -1) {
+            return n;
+        }
         return missing;
     }
 
