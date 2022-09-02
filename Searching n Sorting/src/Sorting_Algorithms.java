@@ -13,6 +13,24 @@ public class Sorting_Algorithms {
         // Insertion Sort
          insertionSort(arr);
         System.out.println(Arrays.toString(arr));
+
+         // Cyclic Sort - Only works when number in the arrays are from 1 to N
+        int[] nums = {5,4,3,2,1};
+        cyclicSort(nums);
+        System.out.println(Arrays.toString(nums));
+    }
+
+    // Cyclic Sort
+    static void cyclicSort(int[] arr) {
+        int i = 0;
+        while (i < arr.length) {
+            int correct = arr[i] - 1;
+            if(arr[i] == arr[correct]) {
+                i++;
+            } else {
+                swap(arr,i,correct);
+            }
+        }
     }
 
     // Insertion Sort
