@@ -45,21 +45,57 @@ public class Sno_34_find_duplicate_in_an_array_of_Nplus1_Integers {
         return result;
     }
 
+    static int findDuplicate(int[] arr) {
+        // Sort the Array
+        cyclicSort(arr);
+
+        int duplicate = 1;
+        for (int i = 0; i < arr.length; i++) {
+            if(arr[i] != duplicate) {
+              return arr[i];
+            }
+            duplicate++;
+        }
+        return -1;
+    }
+
+    static void cyclicSort(int[] arr) {
+        int i = 0;
+        while (i < arr.length) {
+            int correct = arr[i] - 1;
+            if(arr[i] == arr[correct]){
+                i++;
+            } else {
+                swap(arr,i,correct);
+            }
+        }
+    }
+
+    static void swap(int[] arr, int i , int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
     public static void main(String[] args) {
         int[] arr = {1,3,4,2,2};
         // output - 2
 
-        // brute Force - T.C. - O(n^2) S.C. - O(1)
-        int brute = bruteForce(arr);
-        System.out.println(brute);
+        // brute Force => T.C. - O(n^2) &  S.C. - O(1)
+//        int brute = bruteForce(arr);
+//        System.out.println(brute);
 
-        // Optimised Approach T.C. = O(n) S.C. - O(n)
+        // Optimised Approach => T.C. = O(n) & S.C. - O(n)
         // we will use hashmap
-        int hm = hashMap(arr);
-        System.out.println(hm);
+//        int hm = hashMap(arr);
+//        System.out.println(hm);
 
-        // Further Optimised Approach T.C. = O(n) S.C. = O(1)
-        int result = furOptimised(arr);
-        System.out.println(result);
+        // Further Optimised Approach => T.C. = O(n) & S.C. = O(1)
+//        int result = furOptimised(arr);
+//        System.out.println(result);
+
+        // cyclic Sort Approach => T.C. - O(n) & S.C. = O(1)
+        int solution = findDuplicate(arr);
+        System.out.println(solution);
     }
 }
