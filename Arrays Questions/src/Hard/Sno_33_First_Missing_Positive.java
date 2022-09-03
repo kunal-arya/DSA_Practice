@@ -6,6 +6,28 @@ import java.util.HashSet;
 
 public class Sno_33_First_Missing_Positive {
 
+    public static void main(String[] args) {
+        int[] arr = {2,0,3,1};
+        int n = arr.length;
+
+//// brute force T.C. - O(nlogn) S.C. - O(1)
+//        int brute = bruteForce(arr);
+//        System.out.println(brute);
+//
+//////        // Optimised Approach T.C. - O(n) S.C - O(n)
+//        int hm = hashMapSol(arr);
+//        System.out.println(hm);
+//
+//
+//        // further Optimised Approach T.C. - O(n) S.C. - O(1)
+//        int result = furOptimised(arr);
+//        System.out.println(result);
+
+        // BEST SOLUTION ( Cyclic Sort ) => T.C. - O(n) S.C. - O(1)
+        int best = findMissing(arr,n);
+        System.out.println(best);
+    }
+
     private static int bruteForce(int[] arr) {
        // first sort the array
         Arrays.sort(arr);
@@ -68,24 +90,46 @@ public class Sno_33_First_Missing_Positive {
         return arr.length + 1;
     }
 
-    public static void main(String[] args) {
-    int[] arr = {2,0,3,1};
+    static int findMissing(int[] arr, int n) {
+        // sort the array using cyclic sort
+        cyclicSort(arr,n);
+
+        int correctNum = 1;
 
 
-// brute force T.C. - O(nlogn) S.C. - O(1)
-        int brute = bruteForce(arr);
-        System.out.println(brute);
+        for (int i = 0 ; i < n ; i++) {
+            if(arr[i] != correctNum) {
+                return correctNum;
+            }
 
-////        // Optimised Approach T.C. - O(n) S.C - O(n)
-        int hm = hashMapSol(arr);
-        System.out.println(hm);
+            correctNum++;
+        }
 
-
-        // further Optimised Approach T.C. - O(n) S.C. - O(1)
-        int result = furOptimised(arr);
-        System.out.println(result);
-
+        return correctNum;
     }
 
+    static void cyclicSort(int[] arr, int n) {
+        int i = 0;
+        while(i < n) {
+            int correct = arr[i] - 1;
 
+            // dealing with edge case
+            if(arr[i] <= 0 || arr[i] > n) {
+                i++;
+                continue;
+            }
+
+            if( arr[i] == arr[correct] ) {
+                i++;
+            } else {
+                swap(arr,i,correct);
+            }
+        }
+    }
+
+    static void swap(int[] arr, int i , int j ) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
 }
