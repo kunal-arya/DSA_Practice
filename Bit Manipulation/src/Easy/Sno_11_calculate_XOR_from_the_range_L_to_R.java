@@ -37,6 +37,6 @@ public class Sno_11_calculate_XOR_from_the_range_L_to_R {
         // get XOR from 1 to R
         int XorR = Xor1toN(r);
 
-        return XorR - XorL;
+        return XorR ^ XorL;
     }
 }
