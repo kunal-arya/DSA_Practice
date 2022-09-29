@@ -1,11 +1,66 @@
 package Medium;
 
+import java.util.ArrayList;
+
 public class Sno_21_KMP_Algo {
     public static void main(String[] args) {
         String txt = "ababcabcabaababd";
-        String pattern = "ababd";
+        String pattern = "ab";
+
 
         System.out.println(kmpAlgo(txt,pattern));
+
+        // return all the occurence
+        System.out.println(kmpAlgoRet(txt,pattern));
+    }
+
+    static ArrayList<Integer> kmpAlgoRet(String txt, String pattern) {
+        int n = txt.length();
+        int m = pattern.length();
+        ArrayList<Integer> ans = new ArrayList<>();
+        if(n < m) {
+            ans.add(-1);
+            return ans;
+        }
+
+        int i = 1;
+        int j = 0;
+        int[] lps = new int[m];
+
+        while ( i < m) {
+            if(pattern.charAt(i) == pattern.charAt(j)) {
+                lps[i] = j + 1;
+                i++;
+                j++;
+            } else if(j == 0) {
+                lps[i] = 0;
+                i++;
+            } else {
+                j = lps[j - 1];
+            }
+        }
+
+        i = 0; // for txt
+        j = 0; // for pattern
+
+        while(i < n) {
+            if(txt.charAt(i) == pattern.charAt(j)) {
+                i++;
+                j++;
+            } else {
+                if(j == 0) {
+                    i++;
+                } else {
+                    j = lps[j - 1];
+                }
+            }
+
+            if(j == m) {
+                ans.add(i - m );
+                j = lps[j - 1];
+            }
+        }
+        return ans;
     }
 
     static int kmpAlgo(String txt, String pattern) {
