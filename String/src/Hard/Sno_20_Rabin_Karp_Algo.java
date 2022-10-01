@@ -1,4 +1,4 @@
-package Medium;
+package Hard;
 
 public class Sno_20_Rabin_Karp_Algo {
     public static void main(String[] args) {
